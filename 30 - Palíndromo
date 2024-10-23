@@ -1,0 +1,41 @@
+///
+Crie um programa que checa se o número inteiro é palíndromo. Número palíndromo é aquele que, se lido de trás para frente e de frete para trás, é o mesmo.
+Lembre do filme TENET de Nolan.
+
+Exemplo de execução:
+Numero: 45254
+Eh palindromo!
+
+Numero: 45678
+Nao eh palindromo!
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    int numero, reverso = 0, original, resto;
+
+    // Leitura do número
+    printf("Numero: ");
+    scanf("%d", &numero);
+
+    original = numero;
+
+    // Inverte o número
+    while (numero > 0) {
+        resto = numero % 10;          // Pega o último dígito
+        reverso = reverso * 10 + resto; // Adiciona o dígito ao reverso
+        numero /= 10;                 // Remove o último dígito
+    }
+
+    // Verifica se é palíndromo
+    if (original == reverso) {
+        printf("Eh palindromo!\n");
+    } else {
+        printf("Nao eh palindromo!\n");
+    }
+
+    return 0;
+}
