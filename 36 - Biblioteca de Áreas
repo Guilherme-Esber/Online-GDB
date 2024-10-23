@@ -1,0 +1,77 @@
+///
+Nesta plataforma adicione os arquivos (icone new file) chamados "area.c" e "area.h" para montar uma biblioteca de áreas com as seguintes funções que serão disponibilizadas para o programa principal "main.c":
+
+float quadrado(float largura)
+float retangulo(float largura, float profundidade)
+float circulo(float raio)
+float triangulo(float largura, float profundidade)
+No programa principal faça a leitura da largura, profundidade e raio para calcular todas as áreas.
+
+Exemplo de execução:
+
+Largura: 33.2
+Profundidade: 15.9
+Raio: 5.74
+Area do quadrado: ###
+Area do retangulo: ###
+Area do circulo: ###
+Area do triangulo: ###
+///
+
+
+
+ /// main.c
+
+#include <stdio.h>
+#include "area.h"
+
+int main() {
+    float largura, profundidade, raio;
+
+    printf("Largura: ");
+    scanf("%f", &largura);
+    printf("Profundidade: ");
+    scanf("%f", &profundidade);
+    printf("Raio: ");
+    scanf("%f", &raio);
+
+    printf("Area do quadrado: %.2f\n", quadrado(largura));
+    printf("Area do retangulo: %.2f\n", retangulo(largura, profundidade));
+    printf("Area do circulo: %.2f\n", circulo(raio));
+    printf("Area do triangulo: %.2f\n", triangulo(largura, profundidade));
+
+    return 0;
+}
+
+/// area.c
+
+#include "area.h"
+#include <math.h>
+
+float quadrado(float largura) {
+    return largura * largura;
+}
+
+float retangulo(float largura, float profundidade) {
+    return largura * profundidade;
+}
+
+float circulo(float raio) {
+    return M_PI * raio * raio; // M_PI é uma constante definida em math.h
+}
+
+float triangulo(float largura, float profundidade) {
+    return (largura * profundidade) / 2.0f;
+}
+
+/// area.h
+
+#ifndef AREA_H
+#define AREA_H
+
+float quadrado(float largura);
+float retangulo(float largura, float profundidade);
+float circulo(float raio);
+float triangulo(float largura, float profundidade);
+
+#endif // AREA_H
