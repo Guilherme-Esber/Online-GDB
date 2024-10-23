@@ -1,0 +1,97 @@
+///
+Enunciado do Programa em C:
+Desenvolva um programa em C que seja capaz de ler os dados de dispositivos IoT a partir de um arquivo de texto e armazená-los em uma estrutura (struct).
+
+Cada dispositivo IoT pode ter diferentes tipos de sensores, incluindo, mas não se limitando a, sensores de temperatura, umidade, pressão, tensão e corrente.
+
+O programa deve então filtrar e exibir os dispositivos que possuem sensores de tensão ou corrente.
+
+Detalhes:
+Estrutura (struct): Defina uma struct chamada DispositivoIoT, que conterá:
+
+Um identificador único do dispositivo (ID) como uma string.
+O tipo de sensor presente no dispositivo (por exemplo, temperatura, umidade, tensão, corrente, etc.) como uma string.
+Leitura de Arquivo: Os dados dos dispositivos estarão armazenados em um arquivo de texto, onde cada linha conterá informações de um dispositivo no seguinte formato:
+
+ID_SENSOR;TIPO_SENSOR
+Exemplo de linha no arquivo:
+
+1;corrente
+2;temperatura
+3;tensao
+4;umidade
+Funcionalidades do Programa:
+
+Leia os dados dos dispositivos do arquivo de texto e armazene-os em um array de structs.
+Filtre os dispositivos que possuem sensores de tensão ou corrente.
+Exiba os dispositivos filtrados na tela com suas respectivas informações.
+Requisitos Adicionais:
+
+O arquivo contem 50 dispositivos, portanto uma struct vetor deve armazená-los.
+O arquivo está disponível neste endereço:
+https://github.com/valerio-unifei/ECOP11A/raw/refs/heads/main/Arquivos/42-Struct_IoT.txt
+O filtro deve ser aplicado de forma a exibir apenas dispositivos que contenham sensores de tensão ou corrente.
+Se o arquivo de entrada contiver os seguintes dados:
+
+1;corrente
+2;temperatura
+3;tensao
+4;umidade
+5;corrente
+O programa deve exibir:
+
+Dispositivo 1 possui sensor de corrente.
+Dispositivo 3 possui sensor de tensao.
+Dispositivo 5 possui sensor de corrente.
+Escreva o código em C para implementar essa funcionalidade, utilizando structs para armazenar as informações dos dispositivos IoT e aplicando a filtragem adequada para os sensores de tensão ou corrente.
+///
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_DISPOSITIVOS 50
+#define MAX_TIPO_SENSOR 20
+
+typedef struct {
+	char id[10];
+	char tipo_sensor[MAX_TIPO_SENSOR];
+} DispositivoIoT;
+
+void carregarDados(const char *filename, DispositivoIoT dispositivos[], int *num_dispositivos) {
+	FILE *file = fopen(filename, "r");
+	if (!file) {
+		perror("Erro ao abrir o arquivo");
+		exit(EXIT_FAILURE);
+	}
+
+	char linha[256];
+	*num_dispositivos = 0;
+	while (fgets(linha, sizeof(linha), file)) {
+		if (sscanf(linha, "%[^;];%s", dispositivos[*num_dispositivos].id, dispositivos[*num_dispositivos].tipo_sensor) == 2) {
+			(*num_dispositivos)++;
+		}
+	}
+
+	fclose(file);
+}
+
+void filtrarDispositivos(DispositivoIoT dispositivos[], int num_dispositivos) {
+	for (int i = 0; i < num_dispositivos; i++) {
+		if (strcmp(dispositivos[i].tipo_sensor, "tensao") == 0 || strcmp(dispositivos[i].tipo_sensor, "corrente") == 0) {
+			printf("Dispositivo %s possui sensor de %s.\n", dispositivos[i].id, dispositivos[i].tipo_sensor);
+		}
+	}
+}
+
+int main() {
+	DispositivoIoT dispositivos[MAX_DISPOSITIVOS];
+	int num_dispositivos;
+
+	carregarDados("42-Struct_IoT.txt", dispositivos, &num_dispositivos);
+	filtrarDispositivos(dispositivos, num_dispositivos);
+
+	return 0;
+}
