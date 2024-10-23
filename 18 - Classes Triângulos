@@ -1,0 +1,49 @@
+///
+Escreva um programa que receba do usuário os valores das dimensões dos três lados de um triângulo. 
+
+A seguir, o programa deve analisar estes dados e identificar o tipo de triângulo formado por aqueles valores:
+
+Equilátero: três lados iguais;
+Isósceles: dois lados iguais;
+Escaleno: cada lado é diferente um do outro;
+Inválido: dois lados quaisquer, somados, são menores ou iguais ao lado restante
+
+Exemplos:
+
+Entre com os tres lados do triangulo: 2 3 5
+Triangulo Invalido. 
+
+Entre com os tres lados do triangulo: 5 5 2
+Triangulo Isosceles. 
+
+Entre com os tres lados do triangulo: 7 7 7
+Triangulo Equilatero. 
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    int a, b, c;
+
+    // Solicita ao usuário para entrar com os três lados do triângulo
+    printf("Entre com os tres lados do triangulo: ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    // Verifica se os valores fornecidos formam um triângulo válido
+    if (a + b <= c || a + c <= b || b + c <= a) {
+        printf("Triangulo Invalido.\n");
+    } else {
+        // Verifica o tipo de triângulo
+        if (a == b && b == c) {
+            printf("Triangulo Equilatero.\n");
+        } else if (a == b || a == c || b == c) {
+            printf("Triangulo Isosceles.\n");
+        } else {
+            printf("Triangulo Escaleno.\n");
+        }
+    }
+
+    return 0;
+}
