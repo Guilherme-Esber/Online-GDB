@@ -1,0 +1,33 @@
+///
+Desenvolver um programa em C que:
+Leia dois valores inteiros (A e B) fornecidos pelo usuário.
+Implemente uma função que calcule e retorne a soma do dobro desses dois números.
+A função deve atualizar as variáveis A e B, armazenando nelas os seus respectivos valores dobrados.
+Ao final, o programa deverá exibir o resultado da soma do dobro de A e B.
+Vídeo sobre assunto:
+https://youtu.be/ch-tqIi7WTw
+///
+
+
+
+#include <stdio.h>
+
+int main()
+{
+	int A, B, *a, *b;
+
+	printf("Entre o valor A: ");
+	scanf("%d", &A);
+
+	printf("Entre com o valor B: ");
+	scanf("%d", &B);
+
+	a = &A;
+	b = &B;
+
+	printf("Saidas:\n");
+	printf("A = %d\n", (*a) * 2);
+	printf("B = %d", (*b) * 2);
+
+	return 0;
+}
