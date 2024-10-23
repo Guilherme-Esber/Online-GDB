@@ -1,4 +1,6 @@
 ///
+OBS: O ARQUIVO TEM QUE ESTAR EM TXT NO ONINE GDB
+
 Desenvolva um programa em linguagem C que faça o seguinte:
 Baixe um arquivo de texto contendo números desta url: numeros.csv
 Carregue o arquivo baixado e leia os números contidos no arquivo (um número por linha).
