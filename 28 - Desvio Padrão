@@ -1,0 +1,64 @@
+///
+Crie um algoritmo que permita que um usuário informe ATÉ 10 números reais positivos.
+Após isso, o algoritmo deve informar a média e o desvio padrão (DP) amostral dos valores informados.
+Fórmula do DP:
+
+Sendo:
+x: valores amostrados
+media: média dos valores amostrados
+n: número de valores amostrados
+i: contador de posição da amostra
+
+Exemplo de Execução
+Numeros: 1 2 3 2 1 3 2 2 3 1
+Media: 2.000
+Desvio Padrao: 0.816
+///
+
+
+
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double numeros[10]; // Array para armazenar até 10 números
+    int i, n;
+    double soma = 0.0, media, desvio_padrao = 0.0;
+
+    for (n = 0; n < 10; n++) {
+        scanf("%lf", &numeros[n]);
+        if (numeros[n] < 0) {
+            break; // Para se um número negativo for inserido
+        }
+    }
+
+    // Atualiza n para o número de entradas válidas
+    n = (numeros[0] < 0) ? 0 : n;
+
+    // Cálculo da soma
+    for (i = 0; i < n; i++) {
+        soma += numeros[i];
+    }
+
+    // Cálculo da média
+    if (n > 0) {
+        media = soma / n;
+
+        // Cálculo do desvio padrão amostral
+        for (i = 0; i < n; i++) {
+            desvio_padrao += pow(numeros[i] - media, 2);
+        }
+        desvio_padrao = sqrt(desvio_padrao / (n - 1));
+
+        // Exibe os números informados
+        printf("Numeros: ");
+
+        // Exibe resultados
+        printf("Media: %.3lf\n", media);
+        printf("Desvio Padrao: %.3lf\n", desvio_padrao);
+    } else {
+        printf("Nenhum número válido foi informado.\n");
+    }
+
+    return 0;
+}
