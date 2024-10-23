@@ -1,0 +1,59 @@
+///
+Crie um programa em C que gere uma tabela verdade para duas variáveis inteiras, a e b, explorando todos os operadores lógicos disponíveis na linguagem C.
+
+O objetivo é calcular e exibir os resultados dos conectivos lógicos (&&, ||, !, ^, &, |) aplicados às variáveis a e b para todas as combinações possíveis de valores binários (0 e 1).
+
+O programa realiza essas operações de forma direta, sem o uso de estruturas de decisão (como if, switch ou condicionais ternárias), assegurando que o fluxo de controle do programa seja linear e determinístico.
+
+Operadores Utilizados:
+!a e !b: Operadores de negação lógica, que invertem o valor lógico das variáveis.
+a && b: Operador lógico AND, que retorna verdadeiro se ambos os operandos forem verdadeiros.
+a || b: Operador lógico OR, que retorna verdadeiro se pelo menos um dos operandos for verdadeiro.
+a ^ b: Operador bit a bit XOR (OU exclusivo), que retorna verdadeiro se os operandos forem diferentes.
+a & b: Operador bit a bit AND, que compara os bits correspondentes e retorna verdadeiro apenas se ambos os bits forem 1.
+a | b: Operador bit a bit OR, que compara os bits correspondentes e retorna verdadeiro se pelo menos um dos bits for 1.
+Saída do Programa:
+O programa exibe uma tabela onde cada linha corresponde a uma combinação específica dos valores de a e b, mostrando o resultado das operações lógicas aplicadas a essas variáveis. A tabela segue o formato abaixo:
+
+a	b	!a	!b	a&&b	a||b	a^b	a&b	a|b
+------------------------------------------
+0	0	1	1	0	0	0	0	0
+0	1	1	0	0	1	1	0	1
+1	0	0	1	0	1	1	0	1
+1	1	0	0	1	1	0	1	1
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    int a, b;
+
+    // Imprime o cabeçalho da tabela
+    printf("a\tb\t!a\t!b\ta&&b\ta||b\ta^b\ta&b\ta|b\n");
+    printf("------------------------------------------\n");
+
+    // Combinação 1: a=0, b=0
+    a = 0;
+    b = 0;
+    printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", a, b, !a, !b, a&&b, a||b, a^b, a&b, a|b);
+
+    // Combinação 2: a=0, b=1
+    a = 0;
+    b = 1;
+    printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", a, b, !a, !b, a&&b, a||b, a^b, a&b, a|b);
+
+    // Combinação 3: a=1, b=0
+    a = 1;
+    b = 0;
+    printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", a, b, !a, !b, a&&b, a||b, a^b, a&b, a|b);
+
+    // Combinação 4: a=1, b=1
+    a = 1;
+    b = 1;
+    printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", a, b, !a, !b, a&&b, a||b, a^b, a&b, a|b);
+
+
+    return 0;
+}
