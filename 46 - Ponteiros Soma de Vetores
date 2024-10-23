@@ -1,0 +1,73 @@
+///
+Crie uma função em C para somar dois arrays de inteiros. A função deve receber dois arrays e seus respectivos tamanhos e retornar a soma em um terceiro array. A função deve obedecer às seguintes regras:
+
+Caso os arrays tenham tamanhos diferentes, a função deve retornar 0 e o terceiro array não deve ser alterado.
+Caso a operação seja bem-sucedida, a função deve retornar 1, e o terceiro array deve conter os resultados da soma elemento a elemento.
+Utilize aritmética de ponteiros para manipulação dos arrays e calcular suas somas.
+Assinatura da Função:
+
+int somar_arrays(int *array1, int tamanho1, int *array2, int tamanho2, int *resultado);
+array1: ponteiro para o primeiro array de inteiros.
+tamanho1: tamanho do primeiro array.
+array2: ponteiro para o segundo array de inteiros.
+tamanho2: tamanho do segundo array.
+resultado: ponteiro para o array onde será armazenada a soma.
+Exemplo de Função
+
+int somar_arrays(int *array1, int tamanho1, int *array2, int tamanho2, int *resultado) {
+    if (tamanho1 != tamanho2) {
+        return 0;  // Arrays de tamanhos diferentes
+    }
+    
+    for (int i = 0; i < tamanho1; i++) {
+        *(resultado + i) = *(array1 + i) + *(array2 + i);  // Soma elemento a elemento
+    }
+    
+    return 1;  // Sucesso
+}
+///
+
+
+
+#include <stdio.h>
+
+int somar_arrays(int *array1, int tamanho1, int *array2, int tamanho2, int *resultado) {
+	if (tamanho1 != tamanho2) {
+		return 0;  // Arrays de tamanhos diferentes
+	}
+
+	for (int i = 0; i < tamanho1; i++) {
+		*(resultado + i) = *(array1 + i) + *(array2 + i);  // Soma elemento a elemento
+	}
+
+	return 1;  // Sucesso
+}
+
+int main() {
+	int tamanho1 = 4;  // Assumindo que os arrays tem tamanho fixo de 4
+	int array1[tamanho1];
+	int array2[tamanho1];
+	int resultado[tamanho1];
+
+	printf("Entre com vetor A: ");
+	for (int i = 0; i < tamanho1; i++) {
+		scanf("%d", &array1[i]);
+	}
+
+	printf("Entre com o vetor B: \n");
+	for (int i = 0; i < tamanho1; i++) {
+		scanf("%d", &array2[i]);
+	}
+
+	if (somar_arrays(array1, tamanho1, array2, tamanho1, resultado)) {
+		printf("Soma: ");
+		for (int i = 0; i < tamanho1; i++) {
+			printf("%d ", resultado[i]);
+		}
+		printf("\n");
+	} else {
+		printf("Os arrays tem tamanhos diferentes.\n");
+	}
+
+	return 0;
+}
