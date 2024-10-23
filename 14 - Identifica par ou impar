@@ -1,0 +1,33 @@
+///
+Faça um programa que receba um número inteiro e verifique se este número é par ou ímpar.
+
+Exemplo de execução:
+
+Numero: 5
+Eh impar.
+Outro:
+
+Numero: 6
+Eh par.
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    int numero;
+
+    // Solicita um número inteiro ao usuário
+    printf("Numero: ");
+    scanf("%d", &numero);
+
+    // Verifica se o número é par ou ímpar
+    if (numero % 2 == 0) {
+        printf("Eh par.\n");
+    } else {
+        printf("Eh impar.\n");
+    }
+
+    return 0;
+}
