@@ -1,0 +1,57 @@
+///
+ Escreva um programa que leia do usuário um número inteiro, maior que 1, e imprima o enésimo número da sequência de Fibonacci.
+
+Os dois primeiros termos dessa sequência são sempre 0 e 1.
+
+A partir de seu terceiro elemento, ele é calculado pela soma dos dois anteriores, de maneira que fib(n) = fib (n-1) + fib (n-2).
+
+Por exemplo, os dez primeiros termos da sequência são: 0, 1, 1, 2, 3, 5, 8, 13, 21 e 34.
+
+Se o usuário entrar com o número 11, qual seria a resposta do programa?
+
+Dica: Declare, também, variáveis inteiras para guardar os dois números anteriores e as inicialize com 0 e 1. Depois, faça um laço for que comece no terceiro elemento e vá calculando até o elemento n desejado.
+
+Exemplo de execução:
+
+Entre com um numero inteiro positivo (>1): 11
+O 11-esimo numero da sequencia eh 55
+///
+
+
+
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    
+    // Solicita ao usuário um número inteiro maior que 1
+    printf("Entre com um numero inteiro positivo (>1): ");
+    scanf("%d", &n);
+    
+    // Verifica se o número fornecido é maior que 1
+    if (n <= 1) {
+        printf("O número deve ser maior que 1.\n");
+        return 1; // Encerra o programa com código de erro
+    }
+
+    // Variáveis para armazenar os dois números anteriores da sequência de Fibonacci
+    int a = 0; // fib(1)
+    int b = 1; // fib(2)
+    int fib = 0;
+
+    // Calcula o enésimo número da sequência de Fibonacci
+    if (n == 2) {
+        fib = b; // O segundo número da sequência é 1
+    } else {
+        for (int i = 3; i <= n; i++) {
+            fib = a + b; // Calcula o próximo número
+            a = b; // Atualiza o valor de a para o próximo número
+            b = fib; // Atualiza o valor de b para o próximo número
+        }
+    }
+
+    // Imprime o resultado
+    printf("O %d-esimo numero da sequencia: %d\n", n, fib);
+
+    return 0;
+}
