@@ -1,0 +1,64 @@
+///
+OBS: O ARQUIVO TEM QUE ESTAR EM TXT NO ONINE GDB
+
+Uma loja possui 4 filiais, cada uma com um código de 1 a 4. Um arquivo contendo todas as vendas feitas durante o dia nas quatro filiais é gerado a partir de uma planilha, sendo que cada linha do arquivo contém o número da filial e o valor de uma venda efetuada, separados por vírgula.
+
+Segue um exemplo:
+
+1,189.90
+1,45.70
+3,29.90
+4,55.00
+No exemplo acima, a filial 1 fez duas vendas, a primeira totalizando R$ 189,90 e a segunda R$ 45,70.
+
+A filial 3 fez uma venda de R$ 29,90 e a 4 também uma de R$ 55,00.
+
+
+Faça um programa que leia o arquivo abaixo e informe, ao final, o total e o valor médio das vendas de cada filial.
+
+https://raw.githubusercontent.com/valerio-unifei/ECOP11A/refs/heads/main/Arquivos/filiais.txt
+
+Exemplo de Execução:
+
+Filial 1: R$ 189.90
+Filial 2: R$ 45.70
+Filial 3: R$ 29,90
+Filial 4: R$ 55.00
+///
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NUM_FILIAIS 5
+
+int main() {
+    FILE *file;
+    char linha[100];
+    int filial;
+    float valor;
+    float totais[NUM_FILIAIS] = {0};
+
+    file = fopen("filiais.txt", "r");
+    if (file == NULL) {
+        perror("Erro ao abrir o arquivo");
+        return 1;
+    }
+
+    while (fgets(linha, sizeof(linha), file)) {
+        if (sscanf(linha, "%d,%f", &filial, &valor) == 2) {
+            if (filial >= 1 && filial <= NUM_FILIAIS) {
+                totais[filial - 1] += valor;
+            }
+        }
+    }
+
+    fclose(file);
+
+    for (int i = 0; i < NUM_FILIAIS; i++) {
+        printf("Filial %d: %.2f\n", i + 1, totais[i]);
+    }
+
+    return 0;
+}
