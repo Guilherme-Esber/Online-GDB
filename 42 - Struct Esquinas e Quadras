@@ -1,0 +1,154 @@
+///
+Escreva um programa em C que carregue dados de um arquivo de texto contendo informações sobre esquinas e quadras de uma cidade. O programa deve ler esses dados e permitir ao usuário consultar a rua mais próxima a partir de uma posição fornecida em coordenadas UTM (x, y).
+
+Estruturas de Dados
+Esquina:
+
+ID: Um identificador único da esquina (inteiro).
+Localização: Coordenadas UTM (x, y) (valores de ponto flutuante).
+Quadra:
+
+Nome das ruas: Um array de strings, contendo o nome das ruas que formam a quadra.
+IDs das esquinas: Um array de dois inteiros representando os IDs das duas esquinas que delimitam a quadra.
+Arquivo de Entrada
+O programa deve ler um arquivo de texto onde
+
+Esquinas:
+
+Cada linha contém o ID da esquina seguido de suas coordenadas x e y em UTM.
+Exemplo:
+1 500000.00 3000000.00
+2 500100.00 3000100.00
+Quadras:
+
+Cada linha contém o nome da rua seguido dos IDs das duas esquinas que formam a quadra.
+Exemplo:
+Rua_A 1 2
+Rua_B 2 3
+Funcionamento do Programa
+O programa deve carregar as informações de ambos os arquivos para as estruturas de dados adequadas.
+O usuário deverá fornecer uma posição (x, y) em coordenadas UTM.
+O programa deve calcular a distância da posição fornecida para todas as esquinas.
+Em seguida, deve identificar a esquina mais próxima e listar o nome das ruas correspondente.
+Requisitos
+Calcule a distância Euclidiana entre as coordenadas UTM fornecidas pelo usuário e as coordenadas de cada esquina.
+Liste a rua cuja quadra é delimitada pela esquina mais próxima.
+O programa deve manipular múltiplas quadras e esquinas.
+Arquivo: Cidade.txt
+
+# Esquinas (ID, Coordenadas UTM)
+1 123456 987654
+2 123466 987644
+3 123476 987634
+4 123486 987624
+# Quadras (Rua, ID Esquina 1, ID Esquina 2)
+Rua_A 1 2
+Rua_B 2 3
+Rua_C 3 4
+Rua_D 4 1
+Como usar o programa:
+
+O programa carrega os dados das esquinas e quadras.
+O usuário fornece as coordenadas (x = 500050.00, y = 3000050.00).
+O programa identifica que a esquina mais próxima é a de ID 1.
+O programa exibe: "A rua mais próxima é: Rua_A."
+///
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+#define MAX_QUADRAS 100
+#define MAX_RUAS 100
+#define MAX_NOME_RUA 100
+
+typedef struct {
+	int id;
+	float x;
+	float y;
+} Esquina;
+
+typedef struct {
+	char nome[MAX_NOME_RUA];
+	int esquina1;
+	int esquina2;
+} Quadra;
+
+Esquina esquinas[MAX_QUADRAS];
+Quadra quadras[MAX_RUAS];
+int num_esquinas = 0;
+int num_quadras = 0;
+
+void carregarDados(const char *filename) {
+	FILE *file = fopen(filename, "r");
+	if (!file) {
+		perror("Erro ao abrir o arquivo");
+		exit(EXIT_FAILURE);
+	}
+
+	char linha[256];
+	while (fgets(linha, sizeof(linha), file)) {
+		if (linha[0] == '#') {
+			continue; // Ignorar linhas de comentC!rio
+		}
+
+		if (strstr(linha, "Rua_") != NULL) {
+			sscanf(linha, "%s %d %d", quadras[num_quadras].nome, &quadras[num_quadras].esquina1, &quadras[num_quadras].esquina2);
+			// Substituir os sublinhados por espaC'os nos nomes das ruas
+			for (int i = 0; quadras[num_quadras].nome[i]; i++) {
+				if (quadras[num_quadras].nome[i] == '_') {
+					quadras[num_quadras].nome[i] = ' ';
+				}
+			}
+			num_quadras++;
+		} else {
+			sscanf(linha, "%d %f %f", &esquinas[num_esquinas].id, &esquinas[num_esquinas].x, &esquinas[num_esquinas].y);
+			num_esquinas++;
+		}
+	}
+
+	fclose(file);
+}
+
+float calcularDistancia(float x1, float y1, float x2, float y2) {
+	return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+}
+
+void encontrarRuaMaisProxima(float x, float y) {
+	int esquina_mais_proxima = -1;
+	float menor_distancia = -1;
+
+	for (int i = 0; i < num_esquinas; i++) {
+		float distancia = calcularDistancia(x, y, esquinas[i].x, esquinas[i].y);
+		if (menor_distancia == -1 || distancia < menor_distancia) {
+			menor_distancia = distancia;
+			esquina_mais_proxima = i;
+		}
+	}
+
+	printf("Esquina mais próxima: %d\n", esquinas[esquina_mais_proxima].id);
+	printf("Ruas conectadas a essa esquina:\n");
+
+	for (int i = 0; i < num_quadras; i++) {
+		if (quadras[i].esquina1 == esquinas[esquina_mais_proxima].id || quadras[i].esquina2 == esquinas[esquina_mais_proxima].id) {
+			printf("- %s\n", quadras[i].nome);
+		}
+	}
+}
+
+int main() {
+	carregarDados("Cidade.txt");
+
+	float x, y;
+	printf("Digite a coordenada X em UTM: ");
+	scanf("%f", &x);
+	printf("Digite a coordenada Y em UTM: ");
+	scanf("%f", &y);
+
+	encontrarRuaMaisProxima(x, y);
+
+	return 0;
+}
