@@ -1,0 +1,60 @@
+///
+Crie um programa em C que receba três variáveis:
+
+Uma altura (inteiro);
+Uma temperatura (float);
+Uma chave (char), que pode estar nos estados ON ('I') ou OFF ('O').
+Utilizando os conectivos lógicos "E", "OU" e "NÃO", faça as seguintes comparações lógicas sem usar estruturas de decisão:
+
+Condição 1: Avisar quando (a temperatura for maior que 15 graus E a altura menor que 2 metros E a chave estiver ligada).
+Condição 2: Avisar quando (a temperatura for igual ou abaixo dos 10 graus E a altura for 5 metros E a chave estiver desligada).
+Condição 3: Avisar quando (a altura for maior ou igual a 3 metros OU a chave estiver desligada).
+Condição 4: Avisar quando (NÃO for verdade que a temperatura está entre 5 e 20 graus E a altura for menor que 1 metro).
+Saída
+
+Digite a altura (em metros): 5
+Digite a temperatura (em graus Celsius): 10.0
+Digite o estado da chave (O para OFF, I para ON): O
+Temperatura <= 10, altura = 5m e chave desligada: 1
+Altura >= 3m ou chave desligada: 1
+Nao (Temperatura entre 5 e 20 graus) e altura < 1m: 1
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    int altura;
+    float temperatura;
+    char chave;
+    int x1, x2, x3, x4;
+
+    // Entrada de dados
+    printf("Digite a altura (em metros): ");
+    scanf("%d", &altura);
+
+    printf("Digite a temperatura (em graus Celsius): ");
+    scanf("%f", &temperatura);
+
+    printf("Digite o estado da chave (O para OFF, I para ON): ");
+    scanf(" %c", &chave);
+
+    // Condição 1: Temperatura > 15 graus E altura < 2 metros E chave ligada
+    x1 = (temperatura > 15 && altura < 2 && chave == 'I');
+    printf("Temperatura > 15 graus e altura < 2m e chave ligada: %d\n", x1);
+
+    // Condição 2: Temperatura <= 10 graus E altura = 5 metros E chave desligada
+    x2 = (temperatura <= 10 && altura == 5 && chave == 'O');
+    printf("Temperatura <= 10 graus e altura = 5m e chave desligada: %d\n", x2);
+
+    // Condição 3: Altura >= 3 metros OU chave desligada
+    x3 = (altura >= 3 || chave == 'O');
+    printf("Altura >= 3m ou chave desligada: %d\n", x3);
+
+    // Condição 4: NÃO (Temperatura entre 5 e 20 graus) E altura < 1 metro
+    x4 = (!(temperatura > 5 && temperatura <= 20) && altura < 1);
+    printf("Nao (Temperatura entre 5 e 20 graus) e altura < 1m: %d\n", x4);
+
+    return 0;
+}
