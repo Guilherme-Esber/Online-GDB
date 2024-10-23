@@ -7,7 +7,6 @@ Esse programa receberá uma única string texto contendo os seguintes comandos:
 (p, n) = (laser ligado, laser desligado)
 Com esses comandos será cortada uma chapa de 10 x 10 células formada por uma matriz de caracteres.
 
-
 A posição inicial do corte: (x, y) = (0, 0).
 
 Após a inserção dos comandos a chapa deverá aparecer com os detalhes dos cortes com o símbolo '*' no local do corte.
