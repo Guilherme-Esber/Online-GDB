@@ -1,0 +1,79 @@
+///
+Escreva um programa em C que:
+
+Gere dois vetores de 1000 números inteiros aleatórios usando a função rand() com uma semente fixa.
+Aloque dinamicamente memória para armazenar os dois vetores de números e o vetor resultante da soma dos dois vetores.
+Some os valores de cada posição correspondente dos dois vetores e armazene o resultado no vetor de soma.
+Calcule e imprima a média e o desvio padrão dos valores presentes no vetor de soma.
+Libere a memória alocada para os três vetores usando a função free().
+Requisitos:
+Utilize a função srand() para definir a semente de geração dos números aleatórios.
+O vetor de soma deve armazenar a soma de cada posição dos dois vetores.
+O cálculo da média e do desvio padrão deve ser feito com base nos valores do vetor de soma.
+Certifique-se de liberar corretamente a memória alocada após o uso.
+Fórmulas:
+Média:
+​
+Desvio Padrão:
+
+Dicas:
+Utilize a função sqrt() da biblioteca para calcular a raiz quadrada.
+Não se esqueça de incluir a biblioteca para funções de alocação e geração de números aleatórios.
+///
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define SIZE 1000
+
+int main() {
+    // Define a semente para geração de números aleatórios
+    srand(42); // Semente fixa para gerar números reproduzíveis
+
+    // Aloca memória para os vetores
+    int *vector1 = (int *)malloc(SIZE * sizeof(int));
+    int *vector2 = (int *)malloc(SIZE * sizeof(int));
+    int *sumVector = (int *)malloc(SIZE * sizeof(int));
+
+    // Verifica se a alocação de memória foi bem-sucedida
+    if (vector1 == NULL || vector2 == NULL || sumVector == NULL) {
+        fprintf(stderr, "Erro ao alocar memória.\n");
+        return 1;
+    }
+
+    // Gera os números aleatórios para os dois vetores
+    for (int i = 0; i < SIZE; i++) {
+        vector1[i] = rand() % 100; // Números aleatórios entre 0 e 99
+        vector2[i] = rand() % 100; // Números aleatórios entre 0 e 99
+        sumVector[i] = vector1[i] + vector2[i]; // Soma dos vetores
+    }
+
+    // Calcula a média do vetor de soma
+    double sum = 0.0;
+    for (int i = 0; i < SIZE; i++) {
+        sum += sumVector[i];
+    }
+    double mean = sum / SIZE;
+
+    // Calcula o desvio padrão
+    double variance = 0.0;
+    for (int i = 0; i < SIZE; i++) {
+        variance += (sumVector[i] - mean) * (sumVector[i] - mean);
+    }
+    variance /= SIZE;
+    double stddev = sqrt(variance);
+
+    // Imprime a média e o desvio padrão
+    printf("Média: %.2f\n", mean);
+    printf("Desvio Padrão: %.2f\n", stddev);
+
+    // Libera a memória alocada
+    free(vector1);
+    free(vector2);
+    free(sumVector);
+
+    return 0;
+}
