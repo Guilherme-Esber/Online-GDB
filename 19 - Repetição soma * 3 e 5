@@ -1,0 +1,40 @@
+///
+Escreva um programa que faça a soma de todos os números menores ou iguais a 100 que são múltiplos de 3 ou 5.
+
+Utilize um laço do tipo while para realizar a tarefa.
+
+Empregue o resto de divisão igual a zero para determinar se são múltiplos de 3 ou 5.
+
+O valor deve ser impresso sem nenhuma informação extra, apenas o valor inteiro da soma.
+
+Exemplo de Execução:
+
+Soma=####
+https://youtu.be/DOmVsa5YXhk
+///
+
+
+
+#include <stdio.h>
+
+int main(void) {
+
+    int x = 0;
+    int soma = 0;
+    
+    while(x<=100){
+        
+        if (x%3==0){
+            soma+=x;
+        }
+        else if (x%5==0){
+            soma+=x;
+        }
+        x ++;
+    }
+
+    printf("Soma: %d", soma);
+
+
+    return 0;
+}
