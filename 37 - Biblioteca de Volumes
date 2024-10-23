@@ -1,0 +1,91 @@
+///
+Monte uma biblioteca de volumes criando os arquivos "volume.c" e "volume.h" para disponibilizar as seguintes funções que serão usadas no programa principal "main.c":
+float cubo(float aresta)
+float paralelepipedo(float largura, float profundidade, float altura)
+float esfera(float raio)
+float cilindro(float raio, float altura)
+float piramide(float largura, float profundidade, float altura)
+No programa principal, faça a leitura da largura, profundidade, altura, e raio para calcular todos os volumes.
+
+Exemplo de execução:
+Copiar código
+Largura: 10.5
+Profundidade: 7.3
+Altura: 15.2
+Raio: 6.0
+Volume do cubo: ###
+Volume do paralelepípedo: ###
+Volume da esfera: ###
+Volume do cilindro: ###
+Volume da pirâmide: ###
+///
+
+
+
+/// main.c
+
+#include <stdio.h>
+#include "volume.h"
+
+int main() {
+    float largura, profundidade, raio, altura;
+
+    printf("Largura: ");
+    scanf("%f", &largura);
+    printf("Profundidade: ");
+    scanf("%f", &profundidade);
+    printf("Altura: ");
+    scanf("%f", &altura);
+    printf("Raio: ");
+    scanf("%f", &raio);
+
+    printf("Volume do cubo: %.2f\n", cubo(largura));
+    printf("Volume do paralelepipedo: %.2f\n", paralelepipedo(largura, profundidade, altura));
+    printf("Volume da esfera: %.2f\n", esfera(raio));
+    printf("Volume do cilindro: %.2f\n", cilindro(raio, altura));
+    printf("Volume da piramide: %.2f\n", piramide(largura, profundidade, altura));
+
+    return 0;
+}
+
+/// area.c
+
+#include "volume.h"
+#include <math.h>
+
+float cubo(float largura) 
+{
+    return largura * largura * largura;
+}
+
+float paralelepipedo(float largura, float profundidade, float altura) 
+{
+	return largura * profundidade * altura;
+}
+
+float esfera(float raio) 
+{
+	return (M_PI * raio * raio * raio * 4.0f) / 3.0f; // M_PI C) uma constante definida em math.h
+}
+
+float cilindro(float raio, float altura) 
+{
+	return M_PI * raio * raio * altura;
+}
+
+float piramide(float largura, float profundidade, float altura) 
+{
+	return (largura * profundidade * altura) / 3.0f;
+}
+
+/// area.h
+
+#ifndef AREA_H
+#define AREA_H
+
+float cubo(float largura);
+float paralelepipedo(float largura, float profundidade, float altura);
+float esfera(float raio);
+float cilindro(float raio, float altura);
+float piramide(float largura, float profundidade, float altura);
+#endif // AREA_H
