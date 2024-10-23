@@ -1,0 +1,109 @@
+///
+A CBF quer saber a opinião dos torcedores sobre qual jogador colocar como centroavante da seleção na Copa América, e vai realizar uma enquete eletrônica em sua sede, no Rio de Janeiro.
+Quem estiver passando por lá vai poder dar uma sugestão para o Dunga na escalação do time, utilizando o programa que iremos desenvolver. 
+Escreva um programa em C que receba os votos de um número indeterminado de eleitores durante um determinado período.
+Exiba sempre a lista de jogadores possíveis, como vemos na tabela abaixo e peça para o usuário entrar com o código.
+Ao terminar, guarde o voto (um switch seria uma boa ideia, não?), mostre novamente as opções de voto e peça o voto para o eleitor seguinte.
+Utilize um laço do tipo do-while para completar a tarefa.
+Para finalizar a eleição, o fiscal da enquete (você!) deverá digitar a senha “12345” como código de candidato.
+O programa reconhece a senha e termina a execução, mostrando o resultado da eleição, ou seja, quantos votos cada jogador recebeu, quantos foram nulos e quantos foram brancos.
+
+A tabela de candidatos aparece a seguir:
+
+Candidato	Código
+Fred	10
+Jo	20
+Hernane	30
+Branco	0
+Nulo	Qualquer outro código
+Exemplo de Execução:
+
+Lista de Jogadores
+Fred: 10
+Jo: 20
+Hernane: 30
+Branco: 0
+Nulo: Qualquer outro valor
+Entre com seu voto: 10
+Lista de Jogadores
+Fred: 10
+Jo: 20
+Hernane: 30
+Branco: 0
+Nulo: Qualquer outro valor
+Entre com seu voto: 10
+Lista de Jogadores
+Fred: 10
+Jo: 20
+Hernane: 30
+Branco: 0
+Nulo: Qualquer outro valor
+Entre com seu voto: 0
+Lista de Jogadores
+Fred: 10
+Jo: 20
+Hernane: 30
+Branco: 0
+Nulo: Qualquer outro valor
+Entre com seu voto: 12345
+Resultado da enquete
+Fred: 2 votos
+Jo: 0 votos
+Hernane: 0 votos
+Branco: 1 votos
+Nulo: 0 votos
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    int votosFred = 0, votosJo = 0, votosHernane = 0;
+    int votosBranco = 0, votosNulo = 0;
+    int voto;
+
+    do {
+        printf("Lista de Jogadores\n");
+        printf("Fred: 10\n");
+        printf("Jo: 20\n");
+        printf("Hernane: 30\n");
+        printf("Branco: 0\n");
+        printf("Nulo: Qualquer outro valor\n");
+
+        printf("Entre com seu voto: ");
+        scanf("%d", &voto);
+
+        if (voto == 12345) {
+            break;
+        }
+
+        switch (voto) {
+            case 10:
+                votosFred++;
+                break;
+            case 20:
+                votosJo++;
+                break;
+            case 30:
+                votosHernane++;
+                break;
+            case 0:
+                votosBranco++;
+                break;
+            default:
+                votosNulo++;
+                break;
+        }
+
+    } while (1);
+
+    printf("Resultado da enquete\n");
+    printf("Fred: %d votos\n", votosFred);
+    printf("Jo: %d votos\n", votosJo);
+    printf("Hernane: %d votos\n", votosHernane);
+    printf("Branco: %d votos\n", votosBranco);
+    printf("Nulo: %d votos\n", votosNulo);
+
+    return 0;
+}
