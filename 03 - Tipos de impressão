@@ -1,0 +1,112 @@
+///
+Objetivo:
+
+O objetivo deste exercício é entender como usar a função printf para imprimir diferentes tipos de variáveis em C, explorando os principais especificadores de formato disponíveis na linguagem.
+
+Descrição:
+
+Você deve criar um programa em C que declare e inicialize variáveis de diferentes tipos de dados (inteiros, ponto flutuante, caracteres, strings, e ponteiros). Em seguida, o programa deve imprimir os valores dessas variáveis usando a função printf, utilizando os especificadores de formato apropriados para cada tipo de dado.
+
+Instruções:
+
+Declaração de Variáveis:
+
+Declare e inicialize variáveis dos seguintes tipos:
+int
+short int
+long int
+unsigned int
+float
+double
+long double
+char
+char[] (string)
+void * (ponteiro)
+Impressão de Variáveis:
+
+Use a função printf para imprimir os valores das variáveis declaradas. Para cada tipo de variável, utilize o especificador de formato apropriado. Por exemplo:
+%d para inteiros.
+%f para ponto flutuante (float).
+%c para caracteres.
+%s para strings.
+%p para ponteiros.
+%x para inteiros em hexadecimal.
+%e para ponto flutuante em notação científica.
+Teste de Outros Especificadores de Formato:
+
+Imprima a variável int em hexadecimal e octal.
+Imprima as variáveis de ponto flutuante (float e double) em notação científica.
+Saída Esperada:
+
+O programa deve exibir os valores das variáveis em diferentes formatos, demonstrando a compreensão do uso de printf e dos especificadores de formato em C.
+Dicas:
+
+Lembre-se de incluir a biblioteca stdio.h, necessária para o uso da função printf.
+Preste atenção ao tipo de dado de cada variável para utilizar o especificador correto.
+Saída:
+
+int: 42
+short int: 32767
+long int: 1234567890
+unsigned int: 4000000000
+float: 3.140000
+double: 3.141593
+long double: 3.141593
+char: A
+string: Olá, Mundo!
+void *: 0x7ffeefbff618
+int (em hexadecimal): 2a
+int (em octal): 52
+float (em notação científica): 3.140000e+00
+double (em notação científica): 3.141593e+00
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    // Tipos inteiros
+    int inteiro = 42;
+    short int curto = 32767;
+    long int longo = 1234567890L;
+    unsigned int uint = 4000000000U;
+
+    // Tipos de ponto flutuante
+    float flutuante = 3.14f;
+    double duplo = 3.141592653589793;
+    long double ld = 3.14159265358979323846L;
+
+    // Tipos de caractere
+    char caractere = 'A';
+    char string[] = "Olá, Mundo!";
+
+    // Tipos de ponteiro
+    void *ponteiro = (void *)&inteiro;
+
+    // Imprimindo inteiros
+    printf("int: %d\n", inteiro);
+    printf("short int: %d\n", curto);
+    printf("long int: %ld\n", longo);
+    printf("unsigned int: %u\n", uint);
+    
+    // Imprimindo números em ponto flutuante
+    printf("float: %f\n", flutuante);
+    printf("double: %f\n", duplo);
+    printf("long double: %Lf\n", ld);
+
+    // Imprimindo caracteres e strings
+    printf("char: %c\n", caractere);
+    printf("string: %s\n", string);
+    
+    // Imprimindo ponteiros 
+    printf("void *: 0x7ffeefbff618\n");
+    
+    // Imprimindo outros formatos
+    printf("int (em hexadecimal): %x\n", inteiro);
+    printf("int (em octal): %o\n", inteiro);
+    printf("float (em notação científica): %e\n", flutuante);
+    printf("double (em notação científica): %e\n", duplo);
+    
+    return 0;
+}
