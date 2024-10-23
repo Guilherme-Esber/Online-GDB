@@ -1,0 +1,35 @@
+///
+Considere a seguinte declaração:
+
+ int A, *B, **C, ***D;
+Escreva um programa que leia o valor da variável A e utilize os ponteiros B, C e D para calcular e exibir, respectivamente, o dobro, o triplo e o quádruplo desse valor.
+
+O ponteiro B deve ser utilizado para calcular o dobro, o ponteiro C para o triplo e o ponteiro D para o quádruplo do valor de A.
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+	int A;       // VariC!vel original
+	int *B;      // Ponteiro para calcular o dobro
+	int **C;     // Ponteiro duplo para calcular o triplo
+	int ***D;    // Ponteiro triplo para calcular o quC!druplo
+
+	// Entrada do valor de A
+	printf("Digite o valor de A: ");
+	scanf("%d", &A);
+
+	// Inicializando os ponteiros
+	B = &A;
+	C = &B;
+	D = &C;
+
+	// CC!lculos e exibiC'C#o dos resultados
+	printf("Dobro: %d\n", (*B) * 2);
+	printf("Triplo: %d\n", (**C) * 3);
+	printf("Quadruplo: %d\n", (***D) * 4);
+
+	return 0;
+}
