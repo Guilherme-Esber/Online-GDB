@@ -1,0 +1,78 @@
+///
+Desenvolva um programa em linguagem C que faça o seguinte:
+Baixe um arquivo de texto contendo números desta url: numeros.csv
+Carregue o arquivo baixado e leia os números contidos no arquivo (um número por linha).
+Conte o total de valores lidos.
+Calcule a soma dos valores lidos.
+Calcule a média dos valores lidos.
+Calcule o desvio padrão dos valores lidos.
+Exiba a contagem, a soma, a média e o desvio padrão calculados.
+Exemplo de Execução:
+
+Suponha que o arquivo de texto contém os seguintes números:
+
+10.5
+20.3
+15.0
+18.8
+12.7
+O programa deverá exibir:
+
+Contagem de valores: 5
+Soma: 77.30
+Média: 15.46
+Desvio padrão: 3.57
+///
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define MAX_NUMS 1000 // Tamanho máximo do array
+
+int main() {
+    FILE *file;
+    float nums[MAX_NUMS];
+    int total = 0;
+    float soma = 0.0, media, desvio = 0.0;
+
+    // Abrindo o arquivo
+    file = fopen("numeros.txt", "r");
+    if (file == NULL) {
+        perror("Erro ao abrir o arquivo");
+        return EXIT_FAILURE;
+    }
+
+    // Lendo os números do arquivo
+    while (fscanf(file, "%f", &nums[total]) == 1) {
+        soma += nums[total]; // Acumula a soma ao ler
+        total++;
+        if (total >= MAX_NUMS) break; // Evitar overflow
+    }
+    fclose(file);
+
+    // Se não foram lidos números, exibe mensagem de erro
+    if (total == 0) {
+        printf("Nenhum número foi lido do arquivo.\n");
+        return EXIT_FAILURE;
+    }
+
+    // Calculando a média
+    media = soma / total;
+
+    // Calculando o desvio padrão
+    for (int i = 0; i < total; i++) {
+        desvio += pow(nums[i] - media, 2);
+    }
+    desvio = sqrt(desvio / total);
+
+    // Exibindo os resultados
+    printf("Contagem de valores: %d\n", total);
+    printf("Soma: %.2f\n", soma);
+    printf("Média: %.2f\n", media);
+    printf("Desvio padrão: %.2f\n", desvio);
+
+    return 0;
+}
