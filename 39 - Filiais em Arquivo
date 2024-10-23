@@ -13,7 +13,6 @@ No exemplo acima, a filial 1 fez duas vendas, a primeira totalizando R$ 189,90 e
 
 A filial 3 fez uma venda de R$ 29,90 e a 4 também uma de R$ 55,00.
 
-
 Faça um programa que leia o arquivo abaixo e informe, ao final, o total e o valor médio das vendas de cada filial.
 
 https://raw.githubusercontent.com/valerio-unifei/ECOP11A/refs/heads/main/Arquivos/filiais.txt
