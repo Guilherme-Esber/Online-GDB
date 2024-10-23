@@ -1,0 +1,65 @@
+///
+Escreva um programa em C que:
+
+Gere 1000 números inteiros aleatórios (0.0 a 100.0) usando a função rand() com uma semente fixa valor 42.
+Aloque dinamicamente memória para armazenar esses 1000 valores utilizando a função malloc().
+Calcule a média e o desvio padrão dos números gerados.
+Imprima os valores da média e do desvio padrão na tela.
+Libere a memória alocada após o cálculo utilizando a função free().
+Requisitos:
+Utilize a função srand() para definir a semente de geração dos números aleatórios.
+O cálculo da média deve ser feito somando todos os valores e dividindo pelo número total de valores.
+O cálculo do desvio padrão deve seguir a fórmula:
+​
+Certifique-se de liberar corretamente a memória alocada após o uso dos dados.
+Dicas:
+Para calcular a raiz quadrada, use a função sqrt() da biblioteca .
+Lembre-se de incluir a biblioteca para utilizar as funções malloc(), free() e rand().
+///
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main() {
+	// Definindo a semente
+	srand(42);
+
+	// Alocando memC3ria para 1000 inteiros
+	int n = 1000;
+	int *numeros = (int *)malloc(n * sizeof(int));
+	if (numeros == NULL) {
+		fprintf(stderr, "Erro ao alocar memoria.\n");
+		return 1;
+	}
+
+	// Gerando nC:meros aleatC3rios
+	for (int i = 0; i < n; i++) {
+		numeros[i] = rand() % 100; // NC:meros de 0 a 99
+	}
+
+	// Calculando a mC)dia
+	double soma = 0.0;
+	for (int i = 0; i < n; i++) {
+		soma += numeros[i];
+	}
+	double media = soma / n;
+
+	// Calculando o desvio padrC#o
+	double soma_desvio = 0.0;
+	for (int i = 0; i < n; i++) {
+		soma_desvio += (numeros[i] - media) * (numeros[i] - media);
+	}
+	double desvio_padrao = sqrt(soma_desvio / n);
+
+	// Imprimindo os resultados
+	printf("Média: %.2f\n", media);
+	printf("Desvio Padrão: %.2f\n", desvio_padrao);
+
+	// Liberando a memC3ria alocada
+	free(numeros);
+
+	return 0;
+}
