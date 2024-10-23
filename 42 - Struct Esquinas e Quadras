@@ -1,4 +1,6 @@
 ///
+OBS: O ARQUIVO TEM QUE ESTAR EM TXT NO ONINE GDB
+
 Escreva um programa em C que carregue dados de um arquivo de texto contendo informações sobre esquinas e quadras de uma cidade. O programa deve ler esses dados e permitir ao usuário consultar a rua mais próxima a partir de uma posição fornecida em coordenadas UTM (x, y).
 
 Estruturas de Dados
