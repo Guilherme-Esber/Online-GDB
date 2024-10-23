@@ -1,0 +1,37 @@
+///
+Faça um programa para calcular o número fatorial de um inteiro informado pelo usuário.
+
+Calculo do fatorial (símbolo --> "!"):
+
+N! = N * (N-1) * (N-2) * ... * 3 * 2 * 1
+5! = 5 * 4 * 3 * 2 * 1 = 120
+
+Exemplo de execução:
+
+Insira o valor: 3
+Fatorial: 6
+///
+
+
+
+#include <stdio.h>
+
+int main()
+{
+	int numero;
+	int soma = 1;
+
+	printf("Insira o valor: ");
+	scanf("%d", &numero);
+
+	if (numero < 0) {
+		printf("O fatorial nao e definido para numeros negativos.\n");
+	} else {
+		for (int i = 1; i <= numero; i++) {
+			soma *= i;
+		}
+		printf("Fatorial: %d\n", soma);
+	}
+
+	return 0;
+}
