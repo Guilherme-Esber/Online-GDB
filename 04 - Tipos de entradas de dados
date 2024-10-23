@@ -1,0 +1,94 @@
+///
+Crie um programa em linguagem C que leia e exiba valores de diferentes tipos de variáveis. O objetivo é praticar o uso da função scanf para entrada de dados e o formato de impressão adequado para cada tipo de variável.
+
+Instruções:
+Tipos de Variáveis a Serem Lidos:
+
+int: Número inteiro.
+float: Número de ponto flutuante.
+double: Número de ponto flutuante de precisão dupla.
+char: Um único caractere.
+char[100]: Uma string (sequência de caracteres).
+unsigned int: Número inteiro sem sinal.
+long: Número inteiro longo.
+Tarefas:
+
+Solicite ao usuário que insira um valor para cada um dos tipos de variáveis mencionados.
+Utilize a função scanf para capturar a entrada do usuário para cada tipo de variável.
+Após cada entrada, exiba o valor inserido usando a função printf, certificando-se de usar o especificador de formato correto para cada tipo.
+Dicas:
+
+Lembre-se de usar o especificador de formato correto em scanf e printf para cada tipo de dado.
+Para capturar um caractere usando %c, use um espaço antes do %c em scanf para evitar problemas com o buffer de entrada.
+Para strings, considere o tamanho máximo de 100 caracteres.
+Saída Esperada:
+
+O programa deve exibir os valores exatos que o usuário digitou para cada tipo de variável.
+
+Exemplo de Execução:
+Digite um valor inteiro: 42
+Você digitou: 42
+
+Digite um valor de ponto flutuante: 3.14
+Você digitou: 3.140000
+
+Digite um valor de ponto flutuante duplo: 2.718281828
+Você digitou: 2.718282
+
+Digite um caractere: a
+Você digitou: a
+
+Digite uma string: exemplo
+Você digitou: exemplo
+
+Digite um valor inteiro sem sinal: 100
+Você digitou: 100
+
+Digite um valor inteiro longo: 123456789
+Você digitou: 123456789
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    int inteiro;
+    float pontoFlutuante;
+    double pontoFlutuanteDuplo;
+    char caractere;
+    char string[100];
+    unsigned int inteiroSemSinal;
+    long inteiroLongo;
+    long long inteiroLongoLongo;
+
+    printf("Digite um valor inteiro: ");
+    scanf("%i", &inteiro);
+    printf("Você digitou: %d\n", inteiro);
+
+    printf("Digite um valor de ponto flutuante: ");
+    scanf("%f", &pontoFlutuante);
+    printf("Você digitou: %f\n", pontoFlutuante);
+
+    printf("Digite um valor de ponto flutuante duplo: ");
+    scanf("%lf", &pontoFlutuanteDuplo);
+    printf("Você digitou: %lf\n", pontoFlutuanteDuplo);
+
+    printf("Digite um caractere: ");
+    scanf(" %c", &caractere); // Note o espaço antes de %c para evitar problemas com o buffer
+    printf("Você digitou: %c\n", caractere);
+
+    printf("Digite uma string: ");
+    scanf("%s", string);
+    printf("Você digitou: %s\n", string);
+
+    printf("Digite um valor inteiro sem sinal: ");
+    scanf("%u", &inteiroSemSinal);
+    printf("Você digitou: %u\n", inteiroSemSinal);
+
+    printf("Digite um valor inteiro longo: ");
+    scanf("%li", &inteiroLongo);
+    printf("Você digitou: %ld\n", inteiroLongo);
+
+    return 0;
+}
