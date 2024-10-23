@@ -1,0 +1,61 @@
+///
+Implemente um programa em C que solicite ao usuário dois números inteiros e realize as operações aritméticas básicas (adição, subtração, multiplicação, divisão e módulo) com esses dois números. O programa deve exibir os resultados de todas essas operações.
+
+Requisitos:
+
+Solicite ao usuário que insira dois números inteiros.
+
+Realize as seguintes operações com os números fornecidos:
+
+Adição
+Subtração
+Multiplicação
+Divisão
+Módulo (resto da divisão)
+Imprima os resultados de cada operação em uma nova linha, seguindo o formato:
+
+Soma: a + b = resultado
+Subtração: a - b = resultado
+Multiplicação: a * b = resultado
+Divisão: a / b = resultado
+Módulo: a % b = resultado
+Observações:
+
+Certifique-se de que a divisão seja realizada de forma segura, verificando se o divisor não é zero antes de realizar a operação.
+Utilize as variáveis a e b para armazenar os números inteiros fornecidos pelo usuário.
+Exemplo de execução:
+
+Digite o primeiro número: 10
+Digite o segundo número: 3
+
+Soma: 10 + 3 = 13
+Subtração: 10 - 3 = 7
+Multiplicação: 10 * 3 = 30
+Divisão: 10 / 3 = 3
+Módulo: 10 % 3 = 1
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    int a, b;
+
+    // Solicita os números inteiros ao usuário
+    printf("Digite o primeiro número: ");
+    scanf("%d", &a);
+    printf("Digite o segundo número: ");
+    scanf("%d", &b);
+    printf("\n");
+
+    // Realiza e exibe as operações aritméticas
+    printf("Soma: %d + %d = %d\n", a, b, a + b);
+    printf("Subtração: %d - %d = %d\n", a, b, a - b);
+    printf("Multiplicação: %d * %d = %d\n", a, b, a * b);
+    printf("Divisão: %d / %d = %d\n", a, b, a / b);
+    printf("Módulo: %d %% %d = %d\n", a, b, a % b);
+    
+    
+    return 0;
+}
