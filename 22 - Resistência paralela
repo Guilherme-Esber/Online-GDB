@@ -1,0 +1,59 @@
+///
+Faça um programa que:
+
+Receba N resistências em Ohms;
+Pare com a inserção de resistências digitando (zero) 0 Ohms;
+Calcule a resistência paralelo de todas;
+Imprima o número de resistências inseridas e o valor final da resistência paralelo.
+Exemplo de execução:
+
+Calculo de resistencia paralelo
+Insira a resistencia: 2000
+Insira a resistencia: 3000
+Insira a resistencia: 4000
+Insira a resistencia: 6000
+Insira a resistencia: 0
+Valor paralelo: 800.0
+///
+
+
+
+#include <stdio.h>
+
+int main()
+{
+	int resistencia;
+	float soma_inversos = 0.0;
+
+	printf("Calculo de resistencia paralelo");
+
+	for (;;)
+	{
+		printf("\nInsira a resistencia: ");
+		scanf("%d", &resistencia);
+
+		if (resistencia == 0)
+		{
+			break;
+		}
+		else if (resistencia > 0)
+		{
+			soma_inversos += 1.0 / resistencia;
+		}
+	}
+
+	float resistencia_paralela;
+
+	if (soma_inversos > 0)
+	{
+		resistencia_paralela = 1.0 / soma_inversos;
+	}
+	else
+	{
+		resistencia_paralela = 0.0;
+	}
+
+	printf("\nValor paralelo: %.1f\n", resistencia_paralela);
+
+	return 0;
+}
