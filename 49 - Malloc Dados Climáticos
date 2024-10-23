@@ -1,0 +1,120 @@
+///
+Você deverá desenvolver um programa em C que faça alocação dinâmica de um array para armazenar dados de temperatura, pressão, umidade e concentração de CO2. O programa deverá seguir as seguintes especificações:
+
+Estrutura de Dados:
+
+Crie uma estrutura DadosClimaticos que contenha os seguintes campos:
+temperatura (float): armazena a temperatura em graus Celsius.
+pressao (float): armazena a pressão atmosférica em hPa.
+umidade (float): armazena a umidade relativa do ar em porcentagem (%).
+co2 (float): armazena a concentração de CO2 em ppm (partes por milhão).
+Alocação Dinâmica:
+
+Crie um array dinâmico de tamanho 100 para armazenar 100 estruturas do tipo DadosClimaticos.
+Use a função malloc para alocar dinamicamente a memória para este array.
+Geração de Dados Aleatórios:
+
+Inicialize a semente de números aleatórios com o valor 42 usando a função srand(42).
+Para cada estrutura no array, gere valores aleatórios para:
+temperatura: valores entre -10.0 e 40.0 (float).
+pressao: valores entre 980.0 e 1050.0 (float).
+umidade: valores entre 0.0 e 100.0 (float).
+co2: valores entre 300.0 e 600.0 (float).
+Cálculo da Mediana:
+
+Para cada variável (temperatura, pressão, umidade e CO2), calcule a mediana dos 100 valores gerados. Para isso, organize os valores em ordem crescente e obtenha a mediana.
+Impressão dos Resultados:
+
+Imprima a mediana de cada variável (temperatura, pressão, umidade e CO2) no seguinte formato:
+Mediana da Temperatura:
+Mediana da Pressão:
+Mediana da Umidade:
+Mediana do CO2:
+Requisitos:
+O programa deve ser desenvolvido em C.
+Utilize alocação dinâmica para armazenar os 100 elementos.
+Use funções para separar as responsabilidades (ex.: função para gerar os valores aleatórios, função para calcular a mediana, etc).
+Garanta que a memória alocada dinamicamente seja liberada ao final do programa.
+Dicas:
+Para calcular a mediana de um conjunto de 100 valores, ordene os valores e selecione o elemento central. Se houver um número par de valores, a mediana será a média dos dois elementos centrais.
+Use a função qsort para ordenar os valores.
+///
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+typedef struct {
+    float temperatura;
+    float pressao;
+    float umidade;
+    float co2;
+} DadosClimaticos;
+
+int comparar(const void *a, const void *b) {
+    float fa = *(const float *)a;
+    float fb = *(const float *)b;
+    return (fa > fb) - (fa < fb);
+}
+
+void gerarValoresAleatorios(DadosClimaticos *dados, int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        dados[i].temperatura = ((float)rand() / RAND_MAX) * 50.0 - 10.0;
+        dados[i].pressao = ((float)rand() / RAND_MAX) * 70.0 + 980.0;
+        dados[i].umidade = ((float)rand() / RAND_MAX) * 100.0;
+        dados[i].co2 = ((float)rand() / RAND_MAX) * 300.0 + 300.0;
+    }
+}
+
+float calcularMediana(float *valores, int tamanho) {
+    qsort(valores, tamanho, sizeof(float), comparar);
+    if (tamanho % 2 == 0) {
+        return (valores[tamanho / 2 - 1] + valores[tamanho / 2]) / 2;
+    } else {
+        return valores[tamanho / 2];
+    }
+}
+
+void calcularMedianas(DadosClimaticos *dados, int tamanho) {
+    float *temperaturas = malloc(tamanho * sizeof(float));
+    float *pressoes = malloc(tamanho * sizeof(float));
+    float *umidades = malloc(tamanho * sizeof(float));
+    float *co2s = malloc(tamanho * sizeof(float));
+
+    for (int i = 0; i < tamanho; i++) {
+        temperaturas[i] = dados[i].temperatura;
+        pressoes[i] = dados[i].pressao;
+        umidades[i] = dados[i].umidade;
+        co2s[i] = dados[i].co2;
+    }
+
+    printf("Mediana da Temperatura: %.2f\n", calcularMediana(temperaturas, tamanho));
+    printf("Mediana da Pressão: %.2f\n", calcularMediana(pressoes, tamanho));
+    printf("Mediana da Umidade: %.2f\n", calcularMediana(umidades, tamanho));
+    printf("Mediana do CO2: %.2f\n", calcularMediana(co2s, tamanho));
+
+    free(temperaturas);
+    free(pressoes);
+    free(umidades);
+    free(co2s);
+}
+
+int main() {
+    srand(42);
+
+    int tamanho = 100;
+    DadosClimaticos *dados = malloc(tamanho * sizeof(DadosClimaticos));
+
+    if (dados == NULL) {
+        fprintf(stderr, "Erro ao alocar memória\n");
+        return 1;
+    }
+
+    gerarValoresAleatorios(dados, tamanho);
+    calcularMedianas(dados, tamanho);
+
+    free(dados);
+    return 0;
+}
