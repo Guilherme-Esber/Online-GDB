@@ -1,0 +1,98 @@
+///
+Crie um programa em ANSI C (sem orientação a objetos) para simular uma cortadora laser.
+
+Esse programa receberá uma única string texto contendo os seguintes comandos:
+
+(w, s, a, d) = (cima, baixo, esquerda, direita)
+(p, n) = (laser ligado, laser desligado)
+Com esses comandos será cortada uma chapa de 10 x 10 células formada por uma matriz de caracteres.
+
+
+A posição inicial do corte: (x, y) = (0, 0).
+
+Após a inserção dos comandos a chapa deverá aparecer com os detalhes dos cortes com o símbolo '*' no local do corte.
+
+Exemplo de execução:
+
+Comandos: wwddpwwasasanwpassdn
+Chapa cortada:
+* * *               
+* *                 
+*                   
+* *                 
+                                                                                                                 
+Vídeo sobre matrizes:
+https://youtu.be/8_x7s8_rKJM
+///
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char comandos[100];
+    char chapa[10][10];
+    int x = 0, y = 0;
+    int laser_ligado = 0;
+
+    // Inicializar a chapa com espaços em branco
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            chapa[i][j] = ' ';
+        }
+    }
+
+    // Posição inicial da cabeça de corte
+    chapa[x][y] = '*';
+
+    // Entrada dos comandos
+    printf("Comandos:\n");
+    fgets(comandos, sizeof(comandos), stdin);
+
+    // Remover o caractere de nova linha, se presente
+    size_t len = strlen(comandos);
+    if (len > 0 && comandos[len - 1] == '\n') {
+        comandos[len - 1] = '\0';
+    }
+
+    // Processar os comandos
+    for (int i = 0; i < strlen(comandos); i++) {
+        char comando = comandos[i];
+        switch (comando) {
+            case 'w':
+                if (x > 0) x--;
+                break;
+            case 's':
+                if (x < 9) x++;
+                break;
+            case 'a':
+                if (y > 0) y--;
+                break;
+            case 'd':
+                if (y < 9) y++;
+                break;
+            case 'p':
+                laser_ligado = 1;
+                break;
+            case 'n':
+                laser_ligado = 0;
+                break;
+        }
+        if (laser_ligado) {
+            chapa[x][y] = '*';
+        }
+    }
+    
+    printf("Chapa cortada:\n");
+    
+    // Imprimir a chapa resultante
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            printf("%c ", chapa[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
