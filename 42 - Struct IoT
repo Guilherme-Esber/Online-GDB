@@ -1,4 +1,6 @@
 ///
+OBS: O ARQUIVO TEM QUE ESTAR EM TXT NO ONINE GDB
+
 Enunciado do Programa em C:
 Desenvolva um programa em C que seja capaz de ler os dados de dispositivos IoT a partir de um arquivo de texto e armazená-los em uma estrutura (struct).
 
