@@ -1,0 +1,53 @@
+///
+Faça um programa que:
+
+Receba uma string de tamanho 100;
+Copie uma string para outra string;
+Na cópia da string, substitua espaços vazios por "subtraço";
+Na cópia da string, substitua números por "#";
+imprima a string original e a nova modificada.
+Exemplo de Execução:
+
+Entrada: Ola da Unifei de 2024!
+Original: Ola da Unifei de 2024!
+Modificado: Ola_da_Unifei_de_####!
+///
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char original[100];
+    char modificada[100];
+
+    // Recebendo a string de entrada
+    printf("Entrada: ");
+    fgets(original, sizeof(original), stdin);
+
+    // Removendo o caractere de nova linha, se presente
+    size_t len = strlen(original);
+    if (len > 0 && original[len - 1] == '\n') {
+        original[len - 1] = '\0';
+    }
+
+    // Copiando a string original para a string modificada
+    strcpy(modificada, original);
+
+    // Modificando a string copiada
+    for (int i = 0; i < strlen(modificada); i++) {
+        if (modificada[i] == ' ') {
+            modificada[i] = '_';
+        } else if (isdigit(modificada[i])) {
+            modificada[i] = '#';
+        }
+    }
+
+    // Imprimindo as strings
+    printf("Original: %s\n", original);
+    printf("Modificado: %s\n", modificada);
+
+    return 0;
+}
