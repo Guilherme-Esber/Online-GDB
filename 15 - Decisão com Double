@@ -1,0 +1,75 @@
+///
+Faça um programa que receba um número real do tipo double.
+
+Use "%.2lf" no printf() para imprimir com 2 casas decimais o double).
+
+Curiosidade: "lf" do "%.2lf" significa "long float" (definição antiga do double).
+
+Caso ele seja positivo, calcule e mostre o número digitado ao quadrado, utilizando a função pow() da biblioteca “math.h”, e a raiz quadrada do mesmo número, utilizando a função sqrt() da mesma biblioteca.
+
+Caso ele seja zero ou negativo, exiba essa informação na tela para o usuário.
+
+
+
+Número positivo:
+
+Entre com um numero real qualquer: 3
+
+3.00 ao quadrado = 9.00 
+
+Raiz quadrada de 3.00 = 1.73 
+
+
+
+Número negativo:
+
+Entre com um numero real qualquer: -2
+O numero digitado eh negativo 
+Entre com um numero real qualquer: -2
+
+O numero digitado eh negativo.
+
+
+
+Número Zero:
+
+Entre com um numero real qualquer: 0
+
+O numero digitado eh zero.
+
+
+
+Vídeo explicativo:
+https://youtu.be/Vv2iHT_BcjU
+///
+
+
+
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double numero;
+
+    // Solicita um número real ao usuário
+    printf("Entre com um numero real qualquer: ");
+    scanf("%lf", &numero);
+
+    // Verifica se o número é positivo, negativo ou zero
+    if (numero > 0) {
+        // Calcula e mostra o quadrado e a raiz quadrada do número
+        double quadrado = pow(numero, 2);
+        double raizQuadrada = sqrt(numero);
+
+        printf("%.2lf ao quadrado = %.2lf\n", numero, quadrado);
+        printf("Raiz quadrada de %.2lf = %.2lf\n", numero, raizQuadrada);
+    } else if (numero < 0) {
+        // Mostra uma mensagem indicando que o número é negativo
+        printf("O numero digitado eh negativo.\n");
+    } else {
+        // Caso o número seja zero
+        printf("O numero digitado eh zero.\n");
+    }
+
+    return 0;
+}
