@@ -1,0 +1,46 @@
+///
+Escreva um programa em C que calcule a distância entre um dado ponto (x, y) e uma reta.
+
+Receba os três coeficientes da reta (a, b e c) em um mesmo scanf, separados por espaço, assim como as duas coordenadas do ponto (x e y).
+scanf("%f %f %f", &a, &b, &c);
+
+Ao final, imprima o resultado na tela com precisão de três casas depois da vírgula.
+
+Abaixo são dadas algumas definições:
+
+Para calcular a raiz quadrada, inclua a biblioteca math.h, de maneira que possamos utilizar a sua função sqrt():
+math.h
+
+Fórmula da distância de um ponto para uma reta:
+d = (a*x + b*y + c) / sqrt(a*a + b*b);
+
+Exemplo de execução:
+Entre com os coeficientes da equacao da reta separados por espaço (a b c):2 5 8
+Entre com as coordenadas do ponto separadas por espaco (x y):4 6
+A distancia eh igual a 8.542
+///
+
+
+
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    // Declaração das variáveis
+    float a, b, c, x, y, distancia;
+
+    // Solicita e lê os coeficientes da reta e as coordenadas do ponto
+    printf("Entre com os coeficientes da equacao da reta separados por espaço (a b c):");
+    scanf("%f %f %f", &a, &b, &c);
+
+    printf("Entre com as coordenadas do ponto separadas por espaco (x y):");
+    scanf("%f %f", &x, &y);
+
+    // Calcula a distância entre o ponto e a reta
+    distancia = fabs(a * x + b * y + c) / sqrt(a * a + b * b);
+
+    // Imprime a distância com precisão de três casas decimais
+    printf("A distancia eh igual a %.3f\n", distancia);
+
+    return 0;
+}
