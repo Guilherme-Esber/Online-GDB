@@ -10,7 +10,6 @@ A fórmula para cálculo do perímetro de uma circunferência é P=2.π.r;
 O valor de π utilizado no exerício é de 3.14159265;
 As respostas devem possuir 5 dígitos de precisão ('%.5f').
 
-
 Exemplo de funcionamento do programa:
 
 Entre com o raio ate o centro da primeira raia: 50
