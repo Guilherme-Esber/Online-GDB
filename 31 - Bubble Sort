@@ -1,0 +1,45 @@
+///
+Leia um vetor com 10 números reais, ordene os elementos deste vetor, e no final escreva os elementos do vetor ordenado.
+Use o método "Bubble Sort" para ordenar.
+
+Exemplo de execução:
+Numeros: 8 3 7 6 5 0 1 9 4 2 1
+Ordenado: 0 1 2 3 4 5 6 7 8 9
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    double numeros[10];
+    int i, j;
+    double temp;
+
+    // Leitura dos números
+    printf("Numeros: ");
+    for (i = 0; i < 10; i++) {
+        scanf("%lf", &numeros[i]);
+    }
+
+    // Bubble Sort
+    for (i = 0; i < 10 - 1; i++) {
+        for (j = 0; j < 10 - i - 1; j++) {
+            if (numeros[j] > numeros[j + 1]) {
+                // Troca os elementos
+                temp = numeros[j];
+                numeros[j] = numeros[j + 1];
+                numeros[j + 1] = temp;
+            }
+        }
+    }
+
+    // Exibe os números ordenados
+    printf("Ordenado: ");
+    for (i = 0; i < 10; i++) {
+        printf("%.0lf ", numeros[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
