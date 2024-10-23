@@ -1,0 +1,49 @@
+///
+Os números de Catalan são definidos pela seguinte recursão:
+
+Se n = 0 então c(n) = 1
+Se n > 0 então c(n) = c(n - 1) * 2 * (2 * n - 1) / (n + 1)
+Alguns números desta sequência são: 1, 1, 2, 5, 14, 42, 132, 429...
+
+Faça uma função recursiva que:
+
+receba um número N e retorne o N-ésimo número de Catalan;
+mostre os valores intermediários impares até esse valor
+Exemplo de Execução:
+
+Numero: 8
+C(1) = 1
+C(3) = 5
+C(5) = 42
+C(7) = 429
+C(8) = 1430
+///
+
+
+
+#include <stdio.h>
+
+int C(int n) {
+	if (n == 0) return 1;
+	return C(n - 1) * 2 * (2 * n - 1) / (n + 1);
+}
+
+int main()
+{
+	int n;
+
+	printf("Numero: \n");
+	scanf("%d", &n);
+
+	for (int i = 0; i <= n; i++) {
+		int sla = C(i);
+		if (i % 2 != 0) {
+			printf("C(%d) = %d\n", i, sla);
+		}
+		else if (i == n) {
+			printf("C(%d) = %d\n", i, sla);
+		}
+	}
+
+	return 0;
+}
