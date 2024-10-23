@@ -1,0 +1,46 @@
+///
+Faça um programa em C que calcule o salário final de um empregado de uma loja, que é formado por duas partes:
+uma parte fixa;
+uma parte variável, dada por uma porcentagem sobre o valor vendido por ele naquele mês.
+
+Peça para o usuário entrar com o valor do salário fixo e com o valor total vendido naquele mês e armazene os valores em duas variáveis do tipo float.
+
+Calcule seu salário final, utilizando uma porcentagem de 15% (0.15) na comissão e imprima o valor com a seguinte formatação:
+Entre com o salario fixo: 1500
+Entre com o valor vendido no mes: 1000
+Salario final = R$ 1650.00
+
+O valor do "Salario Final" deve ser formatado usando '%.2f'.
+https://youtu.be/ivZL3m9bRJc
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    // Declaração das variáveis
+    float salarioFixo;
+    float valorVendido;
+    float salarioFinal;
+    float comissao;
+
+    // Solicita o valor do salário fixo
+    printf("Entre com o salario fixo: ");
+    scanf("%f", &salarioFixo);
+
+    // Solicita o valor vendido no mês
+    printf("Entre com o valor vendido no mes: ");
+    scanf("%f", &valorVendido);
+
+    // Calcula a comissão como 15% do valor vendido
+    comissao = valorVendido * 0.15;
+
+    // Calcula o salário final
+    salarioFinal = salarioFixo + comissao;
+
+    // Exibe o salário final formatado com duas casas decimais
+    printf("Salario final = R$ %.2f\n", salarioFinal);
+
+    return 0;
+}
