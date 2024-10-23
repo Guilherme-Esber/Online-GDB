@@ -1,0 +1,66 @@
+///
+Escreva um programa em C que calcule a distância que é percorrida em cada raia de uma pista de atletismo para completar uma volta.
+
+Uma pista de atletismo circular é formada por uma quantidade de raias concêntricas (mesmo centro), consecutivas e com a mesma largura.
+
+A partir do valor do raio que marca o centro da primeira raia, definido pelo usuário, é possível calcular o valor do raio que marca o centro da segunda raia adicionando o valor da largura, e assim sucessivamente.
+
+A pista possui 5 raias de 1.0 m de largura;
+A fórmula para cálculo do perímetro de uma circunferência é P=2.π.r;
+O valor de π utilizado no exerício é de 3.14159265;
+As respostas devem possuir 5 dígitos de precisão ('%.5f').
+
+
+Exemplo de funcionamento do programa:
+
+Entre com o raio ate o centro da primeira raia: 50
+Distancia raia 1: 314.15927
+Distancia raia 2: 320.44247
+Distancia raia 3: 326.72565
+Distancia raia 4: 333.00882
+Distancia raia 5: 339.29202
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    int NUM_RAIAS = 5;
+    float PI = 3.14159265;
+    float LARGURA_RAIAS = 1.0;
+    float raioPrimeiraRaia;
+    float raio;
+    float distancia;
+
+    // Solicita o raio até o centro da primeira raia
+    printf("Entre com o raio ate o centro da primeira raia: ");
+    scanf("%f", &raioPrimeiraRaia); // Corrigido para %f para float
+
+    // Calcula e exibe a distância para a raia 1
+    raio = raioPrimeiraRaia;
+    distancia = 2 * PI * raio;
+    printf("Distancia raia 1: %.5f\n", distancia);
+
+    // Calcula e exibe a distância para a raia 2
+    raio = raioPrimeiraRaia + LARGURA_RAIAS;
+    distancia = 2 * PI * raio;
+    printf("Distancia raia 2: %.5f\n", distancia);
+
+    // Calcula e exibe a distância para a raia 3
+    raio = raioPrimeiraRaia + 2 * LARGURA_RAIAS;
+    distancia = 2 * PI * raio;
+    printf("Distancia raia 3: %.5f\n", distancia);
+
+    // Calcula e exibe a distância para a raia 4
+    raio = raioPrimeiraRaia + 3 * LARGURA_RAIAS;
+    distancia = 2 * PI * raio;
+    printf("Distancia raia 4: %.5f\n", distancia);
+
+    // Calcula e exibe a distância para a raia 5
+    raio = raioPrimeiraRaia + 4 * LARGURA_RAIAS;
+    distancia = 2 * PI * raio;
+    printf("Distancia raia 5: %.5f\n", distancia);
+
+    return 0;
+}
