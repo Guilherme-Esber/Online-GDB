@@ -1,0 +1,62 @@
+///
+Faça um programa que:
+
+Receba uma string contendo grupos de números;
+Decodifique estes números com a tabela ASCII;
+Ajuste as casas decimais;
+Some os números;
+Imprima a soma.
+Lembrar que o programa só tem uma única entrada, uma string.
+
+Vídeo sobre Funções:
+https://youtu.be/TT-dJHzfi0Q
+
+Exemplos de Execução:
+
+Texto numerico: 12345
+Soma: 12345
+
+
+Texto numerico: 23da13
+Nao eh um numero!
+///
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char texto[100];
+    int soma = 0;
+    int eh_numero = 1;
+
+    // Recebendo a string de entrada
+    printf("Texto numerico: ");
+    fgets(texto, sizeof(texto), stdin);
+
+    // Removendo o caractere de nova linha, se presente
+    size_t len = strlen(texto);
+    if (len > 0 && texto[len - 1] == '\n') {
+        texto[len - 1] = '\0';
+    }
+
+    // Verificando se a string contém apenas números
+    for (int i = 0; i < strlen(texto); i++) {
+        if (!isdigit(texto[i])) {
+            eh_numero = 0;
+            break;
+        }
+    }
+
+    // Se a string contém apenas números, somar os números
+    if (eh_numero) {
+        soma = atoi(texto);
+        printf("Soma: %d\n", soma);
+    } else {
+        printf("Nao eh um numero!\n");
+    }
+
+    return 0;
+}
