@@ -1,0 +1,37 @@
+///
+Crie um programa de conversão de Dólares (US$) para Reais (R$).
+
+Declare duas variáveis do tipo float, uma para o valor em reais e outra para o mesmo valor em dólares;
+Peça para que o usuário entre com um valor em dólares (printf);
+Guarde este valor na variável correspondente (scanf);
+Faça o cálculo do valor em reais, utilizando a seguinte taxa de câmbio: US$ 1.00 = R$ 5.70.
+Imprima na tela o valor calculado em reais (printf).
+Vídeo explicativo:
+https://youtu.be/xQLsytdDBYc
+
+Exemplo de console do programa
+Entre com o valor em dolares: 54
+54.000000 dolares = 307.799988 reais
+///
+
+
+
+#include <stdio.h>
+
+int main()
+{
+    float reais;   // Variável para armazenar o valor em reais
+    float dolares; // Variável para armazenar o valor em dólares
+    
+    // Solicita ao usuário que entre com o valor em dólares
+    printf("Entre com o valor em dolares: ");
+    scanf("%f\n", &dolares);
+    
+    // Calcula o valor em reais usando a taxa de câmbio fornecida
+    reais = dolares * 5.7;
+    
+    // Imprime o valor calculado em reais
+    printf("%f dolares = %f reais\n", dolares, reais);
+    
+    return 0;
+}
