@@ -1,0 +1,53 @@
+///
+Crie um programa que realize a soma das matrizes abaixo:
+
+Matriz A:
+
+5	0	1
+0	3	0
+2	0	2
+Matriz B:
+
+0	2	0
+9	4	1
+0	3	5
+///
+
+
+
+#include <stdio.h>
+
+int main() {
+    // Definindo as matrizes A e B
+    int matriz_A[3][3] = {
+        {5, 0, 1},
+        {0, 3, 0},
+        {2, 0, 2}
+    };
+
+    int matriz_B[3][3] = {
+        {0, 2, 0},
+        {9, 4, 1},
+        {0, 3, 5}
+    };
+
+    // Inicializando a matriz de resultado com zeros
+    int matriz_resultado[3][3] = {0};
+
+    // Iterando sobre cada elemento das matrizes A e B
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            matriz_resultado[i][j] = matriz_A[i][j] + matriz_B[i][j];
+        }
+    }
+
+    // Imprimindo a matriz de resultado
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%d ", matriz_resultado[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
