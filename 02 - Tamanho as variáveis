@@ -1,5 +1,4 @@
 ///
-
 Escreva o código abaixo e veja o tamanho das variáveis da linguagem C.
 
 #include 
@@ -27,8 +26,9 @@ int main() {
 
     return 0;
 }
-
 ///
+
+
 
 #include <stdio.h>
 
