@@ -9,8 +9,6 @@ Caso ele seja positivo, calcule e mostre o número digitado ao quadrado, utiliza
 
 Caso ele seja zero ou negativo, exiba essa informação na tela para o usuário.
 
-
-
 Número positivo:
 
 Entre com um numero real qualquer: 3
@@ -18,8 +16,6 @@ Entre com um numero real qualquer: 3
 3.00 ao quadrado = 9.00 
 
 Raiz quadrada de 3.00 = 1.73 
-
-
 
 Número negativo:
 
@@ -29,15 +25,11 @@ Entre com um numero real qualquer: -2
 
 O numero digitado eh negativo.
 
-
-
 Número Zero:
 
 Entre com um numero real qualquer: 0
 
 O numero digitado eh zero.
-
-
 
 Vídeo explicativo:
 https://youtu.be/Vv2iHT_BcjU
