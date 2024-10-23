@@ -1,0 +1,58 @@
+///
+Desenvolva uma função em C que receba duas strings como parâmetros e verifique se a segunda string está presente dentro da primeira.
+
+Acesse os caracteres das strings utilizando exclusivamente aritmética de ponteiros.
+///
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+int verifica_substring(char *str, char *substr) {
+	char *p1, *p2, *p1_advance = str;
+
+	// AvanC'ar o ponteiro p1_advance atC) o ponto onde a substring pode caber
+	while (*p1_advance) {
+		p1 = p1_advance;
+		p2 = substr;
+
+		// Verificar se a substring estC! presente a partir da posiC'C#o atual
+		while (*p1 && *p2 && (*p1 == *p2)) {
+			p1++;
+			p2++;
+		}
+
+		// Se chegamos ao final da substring, significa que encontramos a substring
+		if (!*p2)
+			return 1;
+
+		p1_advance++;
+	}
+
+	// Se nC#o encontramos a substring, retornar 0
+	return 0;
+}
+
+int main() {
+	char frase[256];
+	char texto[256];
+
+	printf("Entre com a frase: ");
+	fgets(frase, sizeof(frase), stdin);
+	// Remover o caractere de nova linha do final da string
+	frase[strcspn(frase, "\n")] = '\0';
+
+	printf("Entre com o texto para buscar: ");
+	fgets(texto, sizeof(texto), stdin);
+	// Remover o caractere de nova linha do final da string
+	texto[strcspn(texto, "\n")] = '\0';
+
+	if (verifica_substring(frase, texto)) {
+		printf("O texto foi encontrado.\n");
+	} else {
+		printf("O texto nao foi encontrado.\n");
+	}
+
+	return 0;
+}
